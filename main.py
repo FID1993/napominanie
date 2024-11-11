@@ -7,7 +7,21 @@ import pygame
 
 
 def sett():
-    pass
+    rem = sd.askstring('Время напоминания', 'Введите время напоминания (ЧЧ:ММ)')
+    if rem:
+        try:
+            hour = int((rem.split(':')[0]))
+            minute = int((rem.split(':')[1]))
+            now = datetime.datetime.now()
+            print(now)
+            dt = now.replace(hour=hour, minute=minute, second=0)
+            print(dt)
+            label.config(text=f'Напоминание установлено на {hour}:{minute}')
+
+        except ValueError:
+            mb.showerror('Ошибка', 'Неверный формат времени')
+        except Exception as e:
+            print(e)
 
 
 window = Tk()
